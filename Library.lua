@@ -4863,15 +4863,5 @@ local Library; do
 end
 
 
-Window:InitPanels()
-
-task.wait(Library.TweeningSpeed)
-
-for Name,Value in Library.Themes.Preset do 
-    Library:Refresh(Name, Value)
-end
-
-Library:AutoLoad()
-
 
 return Library
