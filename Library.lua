@@ -4492,8 +4492,8 @@ local Library; do
                 Items.HealthbarFade.Instance.Size = UDim2.new(1, -2, 1 - NewValue, 0)
                 Items.HealthText.Instance.Size = UDim2.new(0, 0, 1 - NewValue, Items.HealthText.Instance.TextBounds.Y - 3)
 
-                local Color = Flags["Low Health"].Color:Lerp(Flags["Mid Health"].Color, NewValue)
-                local Color2 = Color:Lerp(Flags["High Health"].Color, NewValue)
+                local Color = Flags["Health_Low"].Color:Lerp(Flags["Health_Medium"].Color, NewValue)
+                local Color2 = Color:Lerp(Flags["Health_High"].Color, NewValue)
                 Items.HealthText.Instance.TextColor3 = Color2
                 Items.HealthText.Instance.Text = Library:Round(NewValue * 100, 1)
 
