@@ -4265,12 +4265,9 @@ local Library; do
                 
                 -- // ESP INSTANCES
                 Items.Main = Library:Create("Frame",{Visible = false; AnchorPoint = Vector2.new(0.5, 0); Parent = Items.Object.Instance; Size = UDim2.new(0, 150, 0, 250); BorderSizePixel = 0; BackgroundColor3 = Color3.fromRGB(255, 255, 255)})
-                Items.BoxFillGradient = Library:Create("UIGradient",{Rotation = 90; Transparency = NumSeq{NumKey(0, 1), NumKey(1, 0)}; Parent = Items.Main.Instance})
                 Items.BoxOutline = Library:Create("UIStroke",{Thickness = 3; LineJoinMode = Enum.LineJoinMode.Miter; Parent = Items.Main.Instance; BorderOffset = UDim.new(0, -1); Transparency = 0.5})
                 Items.BoxAccent = Library:Create("UIStroke",{LineJoinMode = Enum.LineJoinMode.Miter; Color = Color3.fromRGB(255, 255, 255); ZIndex = 2; Parent = Items.Main.Instance})
                 Items.BoxGradient = Library:Create("UIGradient",{Rotation = 90; Parent = Items.BoxAccent.Instance})
-                Items.Glow = Library:Create("ImageLabel",{ImageColor3 = Color3.fromRGB(255, 255, 255); ScaleType = Enum.ScaleType.Slice; ImageTransparency = 0.800000011920929; Parent = Items.Main.Instance; Size = UDim2.new(1, 45, 1, 45); Image = "rbxassetid://18245826428"; BackgroundTransparency = 1; Position = UDim2.new(0, -23, 0, -23); BackgroundColor3 = Color3.fromRGB(255, 255, 255); BorderSizePixel = 0; SliceCenter = Rect.new(Vector2.new(21, 21), Vector2.new(80, 80))})
-                Items.GlowGradient = Library:Create("UIGradient",{Rotation = 90; Parent = Items.Glow.Instance})
 
                 Items.Left = Library:Create("Frame",{Parent = Items.Main.Instance; Size = UDim2.new(0, 0, 1, 4); Position = UDim2.new(0, -4, 0, -2); ZIndex = 2; BorderSizePixel = 0; BackgroundColor3 = Color3.fromRGB(255, 255, 255)})
                 Items.UIListLayout = Library:Create("UIListLayout",{FillDirection = Enum.FillDirection.Horizontal; HorizontalAlignment = Enum.HorizontalAlignment.Right; Parent = Items.Left.Instance; Padding = UDim.new(0, 2); SortOrder = Enum.SortOrder.LayoutOrder})
@@ -4318,44 +4315,28 @@ local Library; do
                 Cfg.Update = function()
                     local Flags = Library.Flags 
 
-                    Items.Main.Instance.Parent = Flags["Esp Enabled"] and Items.Object.Instance or Library.Other.Instance
+                    Items.Main.Instance.Parent = Items.Object.Instance or Library.Other.Instance
 
-                    Items.BoxOutline.Instance.Enabled = Flags["Box"]
-                    Items.BoxAccent.Instance.Enabled = Flags["Box"]
+                    Items.BoxOutline.Instance.Enabled = Flags["Boxes"]
+                    Items.BoxAccent.Instance.Enabled = Flags["Boxes"]
                     
                     -- // Visibility 
-                    Items.Main.Instance.BackgroundTransparency = Flags["Box Fill"] and 0 or 1
-                    Items.Glow.Instance.Visible = Flags["Box Glow"]
-
                     Items.Healthbar.Instance.Visible = Flags["Healthbar"]
-                    Items.HealthText.Instance.Visible = Flags["Healthbar Text"]
+                    Items.HealthText.Instance.Visible = Flags["Manipulated"]
 
                     Items.Name.Instance.Visible = Flags["Names"]
-                    Items.Distance.Instance.Visible = Flags["Distance Text"]
-                    Items.Weapon.Instance.Visible = Flags["Weapon Text"]
+                    Items.Distance.Instance.Visible = Flags["Distance"]
+                    Items.Weapon.Instance.Visible = Flags["Weapon"]
                     Items.Flags.Instance.Visible = Flags["Flags"]
 
                     -- // Text Colors 
-                    Items.Name.Instance.TextColor3 = Flags["Names Text Color"].Color
-                    Items.Distance.Instance.TextColor3 = Flags["Distance Text Color"].Color
-                    Items.Weapon.Instance.TextColor3 = Flags["Weapon Text Color"].Color
-                    Items.Flags.Instance.TextColor3 = Flags["Flags Text Color"].Color
+                    Items.Name.Instance.TextColor3 = Flags["Name_Color"].Color
+                    Items.Distance.Instance.TextColor3 = Flags["Distance_Color"].Color
+                    Items.Weapon.Instance.TextColor3 = Flags["Weapon_Color"].Color
+                    Items.Flags.Instance.TextColor3 = Flags["Manipulated_Color2"].Color
                     
                     -- // Gradients
-                    Items.BoxFillGradient.Instance.Color = ColorSeq{ColorKey(0, Flags["High Contrast Fill"].Color), ColorKey(1, Flags["Low Contrast Fill"].Color)}
-                    Items.BoxFillGradient.Instance.Transparency = NumSeq{NumKey(0, 1 - Flags["High Contrast Fill"].Transparency), NumKey(1, 1 - Flags["Low Contrast Fill"].Transparency)}
-                    
-                    Items.BoxGradient.Instance.Color = ColorSeq{ColorKey(0, Flags["High Contrast Box"].Color), ColorKey(1, Flags["Low Contrast Box"].Color)}
-
-                    Items.GlowGradient.Instance.Color = ColorSeq{ColorKey(0, Flags["High Contrast Glow"].Color), ColorKey(1, Flags["Low Contrast Glow"].Color)}
-                    Items.GlowGradient.Instance.Transparency = NumSeq{NumKey(0, 1 - Flags["High Contrast Glow"].Transparency), NumKey(1, 1 - Flags["High Contrast Glow"].Transparency)}
-
-                    Items.HealthbarGradient.Instance.Color = ColorSeq{ColorKey(0, Flags["High Health"].Color),ColorKey(0.5, Flags["Mid Health"].Color), ColorKey(1, Flags["Low Health"].Color)}
-
-                    -- // Rotations 
-                    Items.BoxFillGradient.Instance.Rotation = Flags["Box Fill Rotation"]
-                    Items.BoxGradient.Instance.Rotation = Flags["Box Gradient Rotation"]
-                    Items.GlowGradient.Instance.Rotation = Flags["Box Glow Rotation"]
+                    Items.HealthbarGradient.Instance.Color = ColorSeq{ColorKey(0, Flags["Health_High"].Color),ColorKey(0.5, Flags["Health_Medium"].Color), ColorKey(1, Flags["Health_Low"].Color)}
                 end
             end 
 
