@@ -4807,6 +4807,8 @@ local Library; do
             Section:AddDropdown({Text = "Options", Flag = "WatermarkSettings", Options = {"Title", "Fps", "Ping", "Game Name", "User ID", "LocalPlayer Name", "Date"}, Multi = true, Default = {"Title", "Fps", "Ping"}})
             Section:AddSlider({Text = "Refresh Rate", Flag = "Refresh Rate", Min = 0, Max = 2, Default = 0.1, Suffix = "s", Decimal = 0.01})
             Section:AddToggle({Text = "Keybind List", Default = true, Callback = self.SetKeybindListVisibility}) 
+            Section:AddKeyPicker({Text = "Menu Bind", Key = Enum.KeyCode.RightShift, Mode = "Toggle", Active = false, Callback = function(bool) Library.SetMenuVisible(Library, bool) end})
+    
                 
             local Section = Settings:AddSection({Title = "Theming", Side = 2})
                 for Name,Value in Themes.Preset do 
